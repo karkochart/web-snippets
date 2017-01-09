@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<script src="https://api-maps.yandex.ru/2.0-stable/?load=package.full&lang=ru-RU" type="text/javascript"></script>
+<script type="text/javascript">
+    var russia;
+    ymaps.ready(function () {
+        russia = new ymaps.Map("regions-map", {
+            center: [59.87, 30.39],
+            zoom: 10
+        });
+
+        var myCollection = new ymaps.GeoObjectCollection();
+
+        var placemark = new ymaps.Placemark(
+                ["55.2435216", "36.42995599999995"]
+        );
+        var myPlacemark = new ymaps.GeoObject({
+            geometry: {
+                type: "Point",
+                coordinates: [55.76, 37.56]
+            }});
+        var myPolygon = new ymaps.Polygon(
+                [
+                    [[59.89, 30.32],[59.90, 30.41],[59.84, 30.47],[59.82, 30.33]]
+                ]
+        );
+
+        myCollection.add(myPolygon);
+        myCollection.add(placemark);
+        myCollection.add(myPlacemark);
+
+        russia.geoObjects.add(myCollection);
+    });
+
+</script>
+<div class="full-width" style="height:400px">
+    <div id="regions-map" style="height:400px"></div>
+</div>
+</body>
+</html>
